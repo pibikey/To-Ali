@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Love Messages</title>
+<style>
+  /* Animated gradient background */
+  @keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(-45deg, #ff9ec1, #ff5fa2, #ffccd5, #ffc0cb);
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 20px #ff5fa2;
+    margin-top: 30px;
+  }
+
+  .messages {
+    max-width: 800px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px;
+  }
+
+  .message {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .message:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .message.expanded {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Pulsing love button */
+  .love-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #ff5fa2;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.1);}
+    100% {transform: scale(1);}
+  }
+
+  /* Confetti effect */
+  .confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #ff5fa2;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: confettiFall 2s linear forwards;
+    border-radius: 50%;
+  }
+
+  @keyframes confettiFall {
+    0% {transform: translateY(0) rotate(0deg);}
+    100% {transform: translateY(500px) rotate(360deg); opacity: 0;}
+  }
+
+  /* Cursor trailing sparkles */
+  .cursor-sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+    animation: sparkleAnim 0.6s linear forwards;
+  }
+
+  @keyframes sparkleAnim {
+    0% {transform: scale(1);}
+    100% {transform: scale(0); opacity: 0;}
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff5fa2;
+    transform: rotate(-45deg);
+    animation: floatUp 3s linear forwards;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff5fa2;
+    border-radius: 50%;
+  }
+
+  .heart::before {
+    top: -5px;
+    left: 0;
+  }
+
+  .heart::after {
+    top: 0;
+    left: 5px;
+  }
+
+  @keyframes floatUp {
+    0% {transform: translateY(0) rotate(-45deg); opacity: 1;}
+    100% {transform: translateY(-300px) rotate(-45deg); opacity: 0;}
+  }
+</style>
+</head>
+<body>
+
+<h1>💖 My Love Messages 💖</h1>
+
+<div class="messages">
+  <div class="message">I love you more than words can express.</div>
+  <div class="message">Every moment with you is magical.</div>
+  <div class="message">Your smile brightens my darkest days.</div>
+  <div class="message">I can’t imagine life without you.</div>
+  <div class="message">You are my everything.</div>
+  <div class="message">Being with you feels like home.</div>
+  <div class="message">You make my heart skip a beat.</div>
+  <div class="message">I cherish every second with you.</div>
+  <div class="message">You are my sweetest dream come true.</div>
+  <div class="message">Forever and always, you are mine.</div>
+</div>
+
+<button class="love-btn">💖 Love 💖</button>
+
+<script>
+  // Expand message + confetti
+  const messages = document.querySelectorAll('.message');
+  messages.forEach(msg => {
+    msg.addEventListener('click', () => {
+      msg.classList.toggle('expanded');
+      for(let i=0; i<15; i++){
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        const rect = msg.getBoundingClientRect();
+        confetti.style.left = rect.left + Math.random()*rect.width + 'px';
+        confetti.style.top = rect.top + 'px';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 2000);
+      }
+    });
+  });
+
+  // Cursor sparkles
+  document.addEventListener('mousemove', e => {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'cursor-sparkle';
+    sparkle.style.left = e.pageX + 'px';
+    sparkle.style.top = e.pageY + 'px';
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 600);
+  });
+
+  // Love button floating hearts
+  const loveBtn = document.querySelector('.love-btn');
+  loveBtn.addEventListener('click', () => {
+    for(let i=0; i<20; i++){
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = loveBtn.offsetLeft + loveBtn.offsetWidth/2 + Math.random()*100 - 50 + 'px';
+      heart.style.top = loveBtn.offsetTop + 'px';
+      heart.style.width = heart.style.height = 8 + Math.random()*12 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+  });
+</script>
+
+</body>
+</html>
