@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Love 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Basic Styles */
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9ec1, #ff5fa2);
+      color: white;
+      text-align: center;
+      overflow-x: hidden; 
+      scroll-behavior: smooth;
+    }
+
+    body {
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Messages Container */
+    .messages-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Message Styles */
+    .message {
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #ff5fa2;
+      padding: 20px 25px;
+      margin: 15px 0;
+      border-radius: 20px;
+      font-size: 1.1em;
+      text-align: left;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .message:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Expand message on click */
+    .message-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.5s ease;
+    }
+
+    .message.expanded .message-content {
+      max-height: 500px;
+      padding-top: 10px;
+    }
+
+    /* Love Button */
+    .love-btn {
+      margin: 40px auto;
+      padding: 15px 40px;
+      font-size: 1.3em;
+      border: none;
+      border-radius: 30px;
+      background-color: white;
+      color: #ff5fa2;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .love-btn:hover {
+      transform: scale(1.1) rotate(-5deg);
+      background-color: #ffe4ec;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 60px;
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+
+    /* Heart Animation */
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #ff5fa2;
+      transform: rotate(-45deg);
+      animation: float 5s linear infinite;
+      pointer-events: none;
+      border-radius: 5px;
+    }
+
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #ff5fa2;
+      border-radius: 50%;
+    }
+
+    .heart:before { top: -7px; left: 0; }
+    .heart:after { left: 7px; top: 0; }
+
+    @keyframes float {
+      0% {transform: translateY(0) rotate(-45deg); opacity: 1;}
+      100% {transform: translateY(-600px) rotate(-45deg); opacity: 0;}
+    }
+
+    /* Sparkles */
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: sparkleAnim 2s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sparkleAnim {
+      0% {transform: scale(1) translateY(0); opacity: 0.8;}
+      50% {transform: scale(1.5) translateY(-30px); opacity: 0.5;}
+      100% {transform: scale(1) translateY(0); opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+
+  <h1>To: My Ali ❤️</h1>
+
+  <div class="messages-container">
+    <div class="message">
+      Open when you wake up
+      <div class="message-content">Good morning, love! I hope your day starts with a smile. Remember, you’re the first thing I think of when I wake up and the last before I sleep. 💖</div>
+    </div>
+
+    <div class="message">
+      Open when you’re going to sleep
+      <div class="message-content">Sweet dreams, babe. Even when we’re apart, I’m holding you in my heart. Sleep well knowing you’re loved endlessly. 🌙✨</div>
+    </div>
+
+    <div class="message">
+      Open when you miss me
+      <div class="message-content">I miss you too, more than words can say. Close your eyes and imagine me hugging you tight—because that’s exactly what I’m doing in spirit. 💕</div>
+    </div>
+
+    <div class="message">
+      Open when you feel lonely
+      <div class="message-content">You’re never really alone. I’m always thinking of you, cheering for you, loving you, and waiting to be with you. 💌</div>
+    </div>
+
+    <div class="message">
+      Open when you’re stressed
+      <div class="message-content">Take a deep breath, love. Remember how strong you are. I believe in you completely, and I’ll be here when you need to relax. 🌸</div>
+    </div>
+
+    <div class="message">
+      Open when you feel sad
+      <div class="message-content">It’s okay to feel sad sometimes. Let your heart rest and know that my love is here to wrap around you like a warm blanket. ❤️</div>
+    </div>
+
+    <div class="message">
+      Open when you feel proud
+      <div class="message-content">You should be! Every little step, every accomplishment—big or small—makes me fall for you even more. Celebrate yourself today. 🎉</div>
+    </div>
+
+    <div class="message">
+      Open when you feel insecure
+      <div class="message-content">You are perfect to me, exactly as you are. Nothing can change how amazing and loved you are. 💖</div>
+    </div>
+
+    <div class="message">
+      Open when you’re happy
+      <div class="message-content">I love seeing you happy—it lights up my whole world. Keep smiling, babe, and know I’m smiling with you. 😄</div>
+    </div>
+
+    <div class="message">
+      Open when you feel tired
+      <div class="message-content">Rest, love. Close your eyes and let yourself recharge. I’ll be here when you wake, ready to love you even more. 🌙</div>
+    </div>
+
+    <div class="message">
+      Open when you’re mad
+      <div class="message-content">It’s okay to feel angry. Take your time. I’m here, not to fix things, but to love you no matter what. 💌</div>
+    </div>
+
+    <div class="message">
+      Open when you’re excited
+      <div class="message-content">I’m so excited with you! Your joy is contagious, and I can’t wait to celebrate every moment by your side. 🎉💖</div>
+    </div>
+
+    <div class="message">
+      Open when you need a laugh
+      <div class="message-content">Remember yung na sa Puregold tayo? yung time na may lumabas na pero hindi pa rin na tigil? HAAHHAHA 😂 I hope that makes you giggle. I love laughing with you.</div>
+    </div>
+
+    <div class="message">
+      Open when you feel confused
+      <div class="message-content">Life can be messy, but my love for you is simple and constant. Whatever happens, we’ll figure it out together. 💕</div>
+    </div>
+
+    <div class="message">
+      Open when you’re bored
+      <div class="message-content">I’m sending you a virtual hug and a kiss 😘. Also, think about all the fun adventures we’ll have soon!</div>
+    </div>
+
+    <div class="message">
+      Open when you need reassurance
+      <div class="message-content">I love you more than anything. Nothing will ever change that. You are my heart, my home, my everything. ❤️</div>
+    </div>
+
+    <div class="message">
+      Open when you need courage
+      <div class="message-content">Be brave, my love. You’ve got this. And if you stumble, I’ll be right here, holding your hand. 🌟</div>
+    </div>
+
+    <div class="message">
+      Open when you’re frustrated
+      <div class="message-content">Take a moment. Breathe. You’re stronger than you realize, and I’m here to remind you. 💌</div>
+    </div>
+
+    <div class="message">
+      Open when you’re celebrating something
+      <div class="message-content">Yay, love! I’m celebrating with you in spirit. I’m proud of you beyond words. 🎉💖</div>
+    </div>
+
+    <div class="message">
+      Open when you feel loved
+      <div class="message-content">I hope this reminds you: my love for you is endless, unwavering, and completely yours. 💞</div>
+    </div>
+
+    <div class="message">
+      Open when you feel like giving up
+      <div class="message-content">Don’t. You’re stronger than you know. And I’ll always be here to lift you up when you need me. ❤️</div>
+    </div>
+
+    <div class="message">
+      Open when you need a reminder of me
+      <div class="message-content">Don’t. Close your eyes and imagine my arms around you, my lips on your forehead, and my heart beating with yours. 💌</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling adventurous
+      <div class="message-content">Life is an adventure, love, and I’m so glad I get to explore it with you. Let’s make every moment count. 🌍💖</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling romantic
+      <div class="message-content">I love thinking about all the little moments we’ve shared—the hugs, kisses, and whispers. I’m yours forever. 💕</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling sleepy at work
+      <div class="message-content">I know today is long. Imagine me cheering you on from afar and sending you a soft kiss to keep you going 😘</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling proud of us
+      <div class="message-content">We’ve built something so beautiful together. I love us, our journey, and every memory we’ve made. ❤️</div>
+    </div>
+
+    <div class="message">
+      Open when you feel like I don’t notice you
+      <div class="message-content">I notice everything—the little things, the big things, and every amazing thing about you. You’re unforgettable. 💌</div>
+    </div>
+
+    <div class="message">
+      Open when you need a pick-me-up
+      <div class="message-content">Smile, love. I’m thinking of your smile right now, and it lights up my whole day. You’re my sunshine. 🌞💖</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling sleepy
+      <div class="message-content">Smile, love. I’m thinking of your smile right now, and it lights up my whole day. You’re my sunshine. 🌞💖</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling playful
+      <div class="message-content">Let’s laugh, tease, and have fun—remember, I’m always up for being silly with you 😏</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling confident
+      <div class="message-content">Own it, love. You are amazing, capable, and irresistible. Never forget that. 🌟</div>
+    </div>
+
+    <div class="message">
+      Open when you feel like you need a hug
+      <div class="message-content">I’m sending you the biggest, warmest hug through this letter. Imagine me holding you tight. 💌🤗</div>
+    </div>
+
+    <div class="message">
+      Open when you’re thinking of the future
+      <div class="message-content">I can’t wait for everything we’ll share—laughter, adventures, and all the quiet moments in between. ❤️</div>
+    </div>
+
+    <div class="message">
+      Open when you feel like a goofball
+      <div class="message-content">I love your silly side. Keep being you—it’s perfect. 😄💖</div>
+    </div>
+
+    <div class="message">
+      Open when you need a reminder of my love
+      <div class="message-content">My love for you is constant, infinite, and unstoppable. You’re everything to me. 💌</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling artistic
+      <div class="message-content">Create, imagine, dream. I love seeing the world through your eyes. You inspire me every day. 🌟</div>
+    </div>
+
+    <div class="message">
+      Open when you need to feel appreciated
+      <div class="message-content">You are incredible. Thank you for being you—my heart, my joy, my love. 💖 🌟</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling silly
+      <div class="message-content">I’m smiling just thinking of all the funny things you do. Never stop being your goofy self 😏💌</div>
+    </div>
+
+    <div class="message">
+      Open when you need to relax
+      <div class="message-content">Close your eyes. Breathe. Imagine me next to you, holding your hand, whispering that it’s all okay. 🌸</div>
+    </div>
+
+    <div class="message">
+      Open when you need to smile
+      <div class="message-content">Smile, love! You are my favorite reason to grin, laugh, and be happy every day. 😄💖</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling emotional
+      <div class="message-content">It’s okay to feel everything. I love you through all your highs and lows—always and forever. ❤️</div>
+    </div>
+
+    <div class="message">
+      Open when you feel like you’re failing
+      <div class="message-content">You’re not failing, babe. Every step, every attempt, every mistake—it’s all part of your amazing journey. I believe in you. ❤️</div>
+    </div>
+
+    <div class="message">
+      Open when you’re feeling romantic at night
+      <div class="message-content">Look at the stars and know I’m thinking of you. My heart is yours, always 🌙✨</div>
+    </div>
+
+    <div class="message">
+      Open when you just want to know you’re loved
+      <div class="message-content">You are my everything. I love you more than I could ever say. Forever and always, my love ❤️</div>
+    </div>
+
+    <div class="message">
+      Open when you need a little sunshine
+      <div class="message-content">You are my sunshine, love. I hope this message brightens your day as much as you brighten mine ☀️💖.</div>
+    </div>
+
+
+    <div class="message">
+      Open when you need motivation
+      <div class="message-content">You can do anything, love. You’ve overcome so much already, and I know there’s nothing you can’t handle. I’m your biggest fan. 🌟.</div>
+    </div>
+  </div>
+
+
+
+
+
+  <button class="love-btn" onclick="alert('I love you mahal ko! 💕')">💖 I Love You 💖</button>
+
+  <div class="footer">From: Dence</div>
+
+  <!-- Floating Hearts & Sparkles -->
+  <script>
+    // Hearts
+    const createHeart = () => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.width = heart.style.height = 10 + Math.random() * 15 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove() }, 5000);
+    };
+    setInterval(createHeart, 250);
+
+    // Sparkles
+    const createSparkle = () => {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = Math.random() * window.innerWidth + 'px';
+      sparkle.style.top = Math.random() * window.innerHeight + 'px';
+      document.body.appendChild(sparkle);
+      setTimeout(() => { sparkle.remove() }, 2000);
+    };
+    setInterval(createSparkle, 500);
+
+    // Expand message on click
+    const messages = document.querySelectorAll('.message');
+    messages.forEach(msg => {
+      msg.addEventListener('click', () => {
+        msg.classList.toggle('expanded');
+      });
+    });
+  </script>
+
+</body>
+</html>
