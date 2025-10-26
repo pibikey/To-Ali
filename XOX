@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love & Tic-Tac-Toe</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #ff9ec1; /* fixed color */
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  h1 {
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 20px #ff5fa2;
+    margin-top: 40px;
+  }
+
+  /* Cursor sparkles */
+  .cursor-sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+    animation: sparkleAnim 0.6s linear forwards;
+  }
+
+  @keyframes sparkleAnim {
+    0% {transform: scale(1);}
+    100% {transform: scale(0); opacity: 0;}
+  }
+
+  /* Side shapes */
+  .side-shape {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+
+  .side-shape:hover {
+    transform: scale(1.8) rotate(45deg);
+    background-color: rgba(255,255,255,0.8);
+  }
+
+  .left-shapes { left: 10px; }
+  .right-shapes { right: 10px; }
+
+  /* Decorative floating hearts */
+  .heart {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    clip-path: polygon(50% 0%, 61% 11%, 68% 22%, 75% 35%, 50% 100%, 25% 35%, 32% 22%, 39% 11%);
+    opacity: 0.7;
+    animation: floatUp linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1);}
+    50% { transform: translateY(-50px) scale(1.2);}
+    100% { transform: translateY(-100px) scale(0.8); opacity: 0;}
+  }
+
+  /* Pop hearts effect */
+  .pop-heart {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    clip-path: polygon(50% 0%, 61% 11%, 68% 22%, 75% 35%, 50% 100%, 25% 35%, 32% 22%, 39% 11%);
+    pointer-events: none;
+    animation: popHeart 0.8s forwards;
+  }
+
+  @keyframes popHeart {
+    0% { transform: translate(0,0) scale(0.5); opacity: 1;}
+    50% { transform: translate(0,-20px) scale(1.2); opacity: 1;}
+    100% { transform: translate(0,-50px) scale(0.5); opacity: 0;}
+  }
+
+  /* Tic Tac Toe game styles */
+  #gameArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+
+  .cell {
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+  }
+
+  .cell:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #fff;
+  }
+
+  /* Glow effect for X and O */
+  .cell.showX, .cell.showO {
+    animation: popXO 0.5s forwards;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff5fa2, 0 0 30px #ff9ec1;
+  }
+
+  @keyframes popXO {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.5); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .scoreboard {
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .reset-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    background-color: #ff5fa2;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: transform 0.3s;
+  }
+
+  .reset-btn:hover {
+    transform: scale(1.1);
+  }
+</style>
+</head>
+<body>
+
+<h1>💖 Love & Tic-Tac-Toe 💖</h1>
+
+<div id="gameArea">
+  <div class="board">
+    <div class="cell" data-index="0"></div>
+    <div class="cell" data-index="1"></div>
+    <div class="cell" data-index="2"></div>
+    <div class="cell" data-index="3"></div>
+    <div class="cell" data-index="4"></div>
+    <div class="cell" data-index="5"></div>
+    <div class="cell" data-index="6"></div>
+    <div class="cell" data-index="7"></div>
+    <div class="cell" data-index="8"></div>
+  </div>
+  <div class="scoreboard">
+    X: <span id="scoreX">0</span> | O: <span id="scoreO">0</span>
+  </div>
+  <button class="reset-btn">Reset Board</button>
+</div>
+
+<div class="left-shapes"></div>
+<div class="right-shapes"></div>
+
+<script>
+  // Cursor sparkles
+  document.addEventListener('mousemove', e => {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'cursor-sparkle';
+    sparkle.style.left = e.pageX + 'px';
+    sparkle.style.top = e.pageY + 'px';
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 600);
+  });
+
+  // Side shapes
+  function createSideShapes() {
+    const left = document.querySelector('.left-shapes');
+    const right = document.querySelector('.right-shapes');
+    for(let i=0; i<15; i++){
+      const shapeL = document.createElement('div');
+      shapeL.className = 'side-shape';
+      shapeL.style.top = Math.random() * window.innerHeight + 'px';
+      left.appendChild(shapeL);
+
+      const shapeR = document.createElement('div');
+      shapeR.className = 'side-shape';
+      shapeR.style.top = Math.random() * window.innerHeight + 'px';
+      right.appendChild(shapeR);
+    }
+  }
+  createSideShapes();
+
+  document.addEventListener('mousemove', e => {
+    const leftShapes = document.querySelectorAll('.left-shapes .side-shape');
+    const rightShapes = document.querySelectorAll('.right-shapes .side-shape');
+    leftShapes.forEach(s => s.style.transform = `translateX(${(e.clientX/window.innerWidth)*20}px)`);
+    rightShapes.forEach(s => s.style.transform = `translateX(-${(e.clientX/window.innerWidth)*20}px)`);
+  });
+
+  // Floating hearts
+  function createHearts() {
+    for(let i=0; i<20; i++){
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = Math.random() * window.innerHeight + 'px';
+      heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+  }
+  setInterval(createHearts, 1000);
+
+  // ======= Tic-Tac-Toe Logic =======
+  const cells = document.querySelectorAll('.cell');
+  let board = Array(9).fill('');
+  let currentPlayer = 'X';
+  let scoreX = 0;
+  let scoreO = 0;
+
+  function checkWin(player) {
+    const winPatterns = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ];
+    return winPatterns.some(pattern => 
+      pattern.every(index => board[index] === player)
+    );
+  }
+
+  function handleClick(e) {
+    const index = e.target.dataset.index;
+    if(board[index] !== '') return;
+
+    board[index] = currentPlayer;
+    e.target.textContent = currentPlayer;
+    e.target.classList.add(currentPlayer === 'X' ? 'showX' : 'showO');
+
+    // Pop a small heart on click
+    const popHeart = document.createElement('div');
+    popHeart.className = 'pop-heart';
+    popHeart.style.left = e.pageX + 'px';
+    popHeart.style.top = e.pageY + 'px';
+    document.body.appendChild(popHeart);
+    setTimeout(() => popHeart.remove(), 800);
+
+    if(checkWin(currentPlayer)){
+      if(currentPlayer==='X'){ scoreX++; document.getElementById('scoreX').textContent = scoreX;}
+      else { scoreO++; document.getElementById('scoreO').textContent = scoreO;}
+      alert(currentPlayer + " wins!");
+      resetBoard();
+      return;
+    }
+
+    if(board.every(cell => cell !== '')){
+      alert("It's a tie!");
+      resetBoard();
+      return;
+    }
+
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+  }
+
+  function resetBoard() {
+    board = Array(9).fill('');
+    cells.forEach(c => {
+      c.textContent = '';
+      c.classList.remove('showX', 'showO');
+    });
+  }
+
+  cells.forEach(cell => cell.addEventListener('click', handleClick));
+  document.querySelector('.reset-btn').addEventListener('click', resetBoard);
+</script>
+
+</body>
+</html>
